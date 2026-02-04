@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Love 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+background:radial-gradient(circle at top,#ff5f9e,#1a002e);
+overflow:hidden;
+font-family:Poppins,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+}
+
+/* Floating hearts */
+.heart{
+position:absolute;
+color:#ff4d6d;
+font-size:22px;
+animation:floatUp 6s linear infinite;
+opacity:0.8;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(100vh);opacity:0;}
+20%{opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+.container{
+width:80%;
+max-width:500px;
+}
+
+h1{
+text-shadow:0 0 20px pink;
+margin-bottom:10px;
+}
+
+p{
+font-size:1.1rem;
+line-height:1.6;
+min-height:120px;
+}
+
+/* Button */
+button{
+margin-top:30px;
+padding:15px 45px;
+border:none;
+border-radius:40px;
+background:#00ffd5;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 0 20px #00ffd5;
+}
+
+#finalLove{
+display:none;
+font-size:2rem;
+margin-top:30px;
+text-shadow:0 0 25px pink;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+</style>
+</head>
+
+<body>
+<audio id="bgm" autoplay loop>
+  <source src="song.mpeg" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener("click", function(){
+  document.getElementById("bgm").play();
+}, { once:true });
+</script>
+
+<div class="container">
+
+<h1 id="title"></h1>
+
+<p id="message"></p>
+
+<button id="yesBtn" onclick="showLove()" style="display:none;">
+YES, ALWAYS 💖
+</button>
+
+<div id="finalLove">I LOVE YOU 💘</div>
+
+</div>
+
+<script>
+
+/* TEXT CONTENT */
+const titleText = "Juhi Saikia ❤️";
+const messageText =
+"I didn’t make this website just for fun...\n\n" +
+"I made it because you are special to me.\n\n" +
+"Every smile of yours means everything to me.\n\n" +
+"Will you stay with me and make more memories? 💞";
+
+let tIndex=0;
+let mIndex=0;
+
+/* TYPE TITLE */
+function typeTitle(){
+if(tIndex < titleText.length){
+document.getElementById("title").innerHTML += titleText.charAt(tIndex);
+tIndex++;
+setTimeout(typeTitle,100);
+}else{
+setTimeout(typeMessage,400);
+}
+}
+
+/* TYPE MESSAGE */
+function typeMessage(){
+if(mIndex < messageText.length){
+document.getElementById("message").innerHTML += messageText.charAt(mIndex);
+mIndex++;
+setTimeout(typeMessage,40);
+}else{
+document.getElementById("yesBtn").style.display="inline-block";
+}
+}
+
+/* SHOW FINAL LOVE */
+function showLove(){
+document.getElementById("yesBtn").style.display="none";
+document.getElementById("finalLove").style.display="block";
+}
+
+/* FLOATING HEARTS */
+function createHeart(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(15+Math.random()*25)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+}
+setInterval(createHeart,300);
+
+/* START */
+typeTitle();
+
+</script>
+
+</body>
+</html>

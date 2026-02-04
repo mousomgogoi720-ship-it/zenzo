@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Secret 💌</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(-45deg,#ff5f6d,#ffc371,#845ec2,#4d96ff);
+  background-size:400% 400%;
+  animation:bgMove 10s ease infinite;
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+}
+
+/* BACKGROUND MOVE */
+@keyframes bgMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* CENTER BOX */
+.box{
+  text-align:center;
+  color:white;
+  animation:fadeIn 2s ease;
+  z-index:2;
+}
+
+h1{
+  font-family:'Pacifico',cursive;
+  font-size:3.2rem;
+  margin-bottom:15px;
+  animation:glow 2s infinite alternate;
+}
+
+p{
+  font-size:1.4rem;
+  letter-spacing:1px;
+  color:#ffe6f0;
+  animation:shake 2s infinite;
+}
+
+button{
+  margin-top:35px;
+  padding:16px 45px;
+  font-size:18px;
+  border:none;
+  border-radius:40px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+  animation:pulse 1.5s infinite;
+  box-shadow:0 0 25px #ff4d6d;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(40px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px pink;}
+  to{text-shadow:0 0 35px hotpink;}
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+@keyframes shake{
+  0%{transform:translateX(0);}
+  25%{transform:translateX(-3px);}
+  50%{transform:translateX(3px);}
+  75%{transform:translateX(-3px);}
+  100%{transform:translateX(0);}
+}
+
+/* FLOATING ITEMS */
+.float{
+  position:absolute;
+  font-size:22px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh);opacity:0;}
+  50%{opacity:1;}
+  100%{transform:translateY(-10vh);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD OVERLAY -->
+<div id="lockScreen">
+  <h2>Enter Password 🔐</h2>
+  <input type="password" id="pass" placeholder="Password">
+  <button onclick="checkPass()">Unlock ❤️</button>
+</div>
+
+<style>
+#lockScreen{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#000,#ff4d6d);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:99999;
+color:white;
+font-family:Poppins,sans-serif;
+}
+
+#lockScreen input{
+padding:12px;
+font-size:18px;
+border:none;
+border-radius:10px;
+text-align:center;
+margin-top:10px;
+}
+
+#lockScreen button{
+margin-top:15px;
+padding:12px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+background:white;
+color:black;
+cursor:pointer;
+}
+</style>
+
+<script>
+function checkPass(){
+if(document.getElementById("pass").value==="Zenzo2587"){
+document.getElementById("lockScreen").style.display="none";
+}else{
+alert("Wrong password 😜");
+}
+}
+</script>
+<audio id="bgm" autoplay loop>
+  <source src="song.mpeg" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener("click", function(){
+  document.getElementById("bgm").play();
+}, { once:true });
+</script>
+
+<div class="box">
+  <h1>Juieeeeeeeee 💖 I made something for you 💌</h1>
+  <p>Think 1000 times before you open it 🫣</p>
+  <button onclick="nextPage()">OPEN IT</button>
+</div>
+
+<script>
+
+function nextPage(){
+  window.location.href = "page2.html";
+}
+
+/* HEARTS */
+function createHeart(){
+  const h = document.createElement("div");
+  h.className = "float";
+  h.innerHTML = "❤️";
+  h.style.left = Math.random()*100 + "vw";
+  h.style.fontSize = (Math.random()*20 + 15) + "px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
+
+/* CATS */
+function createCat(){
+  const c = document.createElement("div");
+  c.className = "float";
+  c.innerHTML = "🐱💖";
+  c.style.left = Math.random()*100 + "vw";
+  c.style.fontSize = (Math.random()*25 + 20) + "px";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),6000);
+}
+
+setInterval(createHeart,300);
+setInterval(createCat,900);
+
+</script>
+
+</body>
+</html>
